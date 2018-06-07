@@ -1,0 +1,28 @@
+package com.javarush.task.task07.task0718;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/* 
+Проверка на упорядоченность
+*/
+public class Solution {
+    public static void main(String[] args) throws Exception {
+        // Считать строки с консоли и объявить ArrayList list тут
+        Scanner sc = new Scanner(System.in);
+        ArrayList<String> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) list.add(sc.nextLine());
+        int l = list.get(0).length();
+        for (int i = 1; i < list.size(); i++) {
+            if (list.get(i).length() <= l) {
+                System.out.println(i);
+                break;
+            }
+            else if (list.get(i).length() >= l) l = list.get(i).length();
+        }
+    }
+}
+
