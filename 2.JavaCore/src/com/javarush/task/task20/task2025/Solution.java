@@ -33,6 +33,6 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-          //  getNumbers(9599595);
+        System.out.println(getNumbers(95995).toString());
     }
 }

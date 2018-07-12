@@ -6,7 +6,7 @@ import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-/* 
+/*
 Знания - сила!
 */
 public class Solution {
@@ -24,8 +24,8 @@ public class Solution {
         String[] filepart = {"closed {4}", "open {2} and last {3}"};
 
         ChoiceFormat fileform = new ChoiceFormat(filelimits, filepart);
-        Format[] testFormats = {null, dateFormat, fileform};
-        MessageFormat pattform = new MessageFormat("{0}   {1} | {5} {6}");
+        Format[] testFormats = {null, null, dateFormat, fileform};
+        MessageFormat pattform = new MessageFormat("{0}  {1} | {5} {6}");
         pattform.setFormats(testFormats);
 
         for (Stock stock : stocks) {
@@ -40,10 +40,66 @@ public class Solution {
         }
     }
 
+    /*public static void sort(List<Stock> list) {
+        Collections.sort(list, new Comparator<Stock>() {
+            public int compare(Stock stock1, Stock stock2) {
+                String[] names = {(String)stock1.get("name"), (String)stock2.get("name")};
+                int value = names[0].compareTo(names[1]);
+
+                if (value != 0)
+                    return value;
+                else {
+                    Date[] dates = {(Date)stock1.get("date"), (Date)stock2.get("date")};
+                    dates[0] = getRandomDate();
+                    dates[1] =getRandomDate();
+                    value = dates[1].compareTo(dates[0]);
+
+                    if (value != 0)
+                        return value;
+                    else {
+                        Double s1Profit = stock1.containsKey("change") ?
+                                (double) stock1.get("change") :
+                                (double) stock1.get("last") - (double) stock1.get("open");
+
+                        Double s2Profit = stock2.containsKey("change") ?
+                                (double) stock2.get("change") :
+                                (double) stock2.get("last") - (double) stock2.get("open");
+                        return -s1Profit.compareTo(s2Profit);
+                    }
+                }
+            }
+        });
+    }*/
     public static void sort(List<Stock> list) {
         Collections.sort(list, new Comparator<Stock>() {
             public int compare(Stock stock1, Stock stock2) {
-                return 0;
+
+                int i, k;// значения для возврата
+                double value1 = 0, value2 = 0;// прибыль
+                //   Format format = new SimpleDateFormat("dd.MM.yyyy");
+                String name1 = (String) stock1.get("name");
+                String name2 = (String) stock2.get("name");
+                Date date1 = (Date) stock1.get("date");
+                Date date2 = (Date) stock2.get("date");
+
+                if (stock1.containsKey("open") && stock1.containsKey("last"))
+                    value1 = (double) stock1.get("last") - (double) stock1.get("open");
+                else if (stock1.containsKey("change"))
+                    value1 = (double) stock1.get("change");
+
+                if (stock2.containsKey("open") && stock2.containsKey("last"))
+                    value2 = (double) stock2.get("last") - (double) stock2.get("open");
+                else if (stock2.containsKey("change"))
+                    value2 = (double) stock2.get("change");
+
+                i = name1.compareTo(name2);
+
+                if (i != 0) return i;
+                else {
+                    k =date2.compareTo(date1); //format.format(date2).compareTo(format.format(date1));
+                    if (k != 0) return k;
+                    else return Double.compare(value2, value1);
+                }
             }
         });
     }
@@ -98,4 +154,3 @@ public class Solution {
         return calendar.getTime();
     }
 }
-

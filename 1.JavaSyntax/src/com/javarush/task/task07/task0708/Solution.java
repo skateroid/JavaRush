@@ -12,22 +12,17 @@ import java.util.Scanner;
 
 public class Solution {
     private static List<String> strings;
-
+    static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
-        strings = new ArrayList<>();
+        //напишите тут ваш код
         int max = 0;
-        BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
+        strings = new ArrayList<>();
 
-        for (int i = 0; i < 5; i++)
-            strings.add(r.readLine());
-
-        for (int i = 0; i < 5; i++)
-            if (max <= strings.get(i).length())
-                max = strings.get(i).length();
-
-        for (int i = 0; i < 5; i++) {
-            if (strings.get(i).length() == max)
-                System.out.println(strings.get(i));
+        for(int i = 0; i < 5; i++) {
+            String s = sc.next();
+            if (s.length() > max) max = s.length();
+            strings.add(s);
         }
+        for(int i = 0; i < str.size(); i++) max = str.size();
     }
 }

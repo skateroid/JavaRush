@@ -18,16 +18,10 @@ public class Solution {
 
     public static Map<String, Cat> createMap() {
         //напишите тут ваш код
-        HashMap<String, Cat> map = new HashMap<>();
-        for (int i = 0; i < 10; i++) {
-            map.put("name"+i, new Cat("cat"+i));
-        }
-        return map;
     }
 
     public static Set<Cat> convertMapToSet(Map<String, Cat> map) {
         //напишите тут ваш код
-        return new HashSet<>(map.values());
     }
 
     public static void printCatSet(Set<Cat> set) {
