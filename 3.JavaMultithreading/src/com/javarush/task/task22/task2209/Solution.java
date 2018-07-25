@@ -42,7 +42,7 @@ public class Solution {
    //             if (s1.equalsIgnoreCase(s2)) {
    //                 buf = words[j];
    //                 result.append(words[j]).append(" ");
-   //                 words[j] = String.valueOf(Math.random());
+   //                 words[j] = String.valueOf(Math.RANDOM());
    //                 break;
    //             }
    //         }
